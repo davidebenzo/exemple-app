@@ -1,0 +1,102 @@
+	[
+		{
+			"id": 1,
+			"name": "Piemonte",
+			"zone_id": 1
+		},
+		{
+			"id": 2,
+			"name": "Valle d'Aosta/Vallée d'Aoste",
+			"zone_id": 1
+		},
+		{
+			"id": 3,
+			"name": "Lombardia",
+			"zone_id": 1
+		},
+		{
+			"id": 4,
+			"name": "Trentino-Alto Adige/Südtirol",
+			"zone_id": 2
+		},
+		{
+			"id": 5,
+			"name": "Veneto",
+			"zone_id": 2
+		},
+		{
+			"id": 6,
+			"name": "Friuli-Venezia Giulia",
+			"zone_id": 2
+		},
+		{
+			"id": 7,
+			"name": "Liguria",
+			"zone_id": 1
+		},
+		{
+			"id": 8,
+			"name": "Emilia-Romagna",
+			"zone_id": 2
+		},
+		{
+			"id": 9,
+			"name": "Toscana",
+			"zone_id": 3
+		},
+		{
+			"id": 10,
+			"name": "Umbria",
+			"zone_id": 3
+		},
+		{
+			"id": 11,
+			"name": "Marche",
+			"zone_id": 3
+		},
+		{
+			"id": 12,
+			"name": "Lazio",
+			"zone_id": 3
+		},
+		{
+			"id": 13,
+			"name": "Abruzzo",
+			"zone_id": 4
+		},
+		{
+			"id": 14,
+			"name": "Molise",
+			"zone_id": 4
+		},
+		{
+			"id": 15,
+			"name": "Campania",
+			"zone_id": 4
+		},
+		{
+			"id": 16,
+			"name": "Puglia",
+			"zone_id": 4
+		},
+		{
+			"id": 17,
+			"name": "Basilicata",
+			"zone_id": 4
+		},
+		{
+			"id": 18,
+			"name": "Calabria",
+			"zone_id": 4
+		},
+		{
+			"id": 19,
+			"name": "Sicilia",
+			"zone_id": 5
+		},
+		{
+			"id": 20,
+			"name": "Sardegna",
+			"zone_id": 5
+		}
+	]
