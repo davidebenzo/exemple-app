@@ -40,7 +40,8 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
-
+       
+        User::findOrFail($user->id)->roles()->sync(2);
         event(new Registered($user));
 
         Auth::login($user);

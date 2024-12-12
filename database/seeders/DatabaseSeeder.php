@@ -12,6 +12,7 @@ use App\Models\Zip;
 use App\Models\Zone;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -27,15 +28,21 @@ class DatabaseSeeder extends Seeder
         $this->call(CitySeeder::class);
         $this->call(ZipSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(RolesTableSeeder::class);
+        $this->call(PermissionsTableSeeder::class);
+
 
 
 
         User::factory()->create([
             'name' => 'Test User',
-            'email' => 'test@example.com',
+            'email' => 'davidebenzo@gmail.com',
+            'password'=> bcrypt('12345678'),
         ]);
 
+        $this->call(RoleUserTableSeeder::class);
+        $this->call(PermissionRoleTableSeeder::class);
 
-        CommercialActivity::factory(20)->create();
+        CommercialActivity::factory(150)->create();
     }
 }

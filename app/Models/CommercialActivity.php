@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 use App\Models\City;
 use App\Models\Category;
+use App\Models\User;
 
 class CommercialActivity extends Model
 {
@@ -18,13 +19,22 @@ class CommercialActivity extends Model
         'address',
         'city_id',
         'category_id',
+        'rangeKm',
+        'user_id'
     ];
 
 
     protected $hidden = [
         'city_id',
-        'category_id'
+        'category_id',
+        'user_id'
     ];
+
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'user_id');
+    }
 
 
     public function city()
@@ -35,5 +45,10 @@ class CommercialActivity extends Model
     public function category()
     {
         return $this->belongsTo(Category::class,'category_id');
+    }
+
+    public function deliveryCities()
+    {
+        return $this->belongsToMany(City::class, 'commercial_activity_city', 'commercial_activity_id', 'city_id');
     }
 }

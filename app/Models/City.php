@@ -10,6 +10,8 @@ class City extends Model
         'id',
         'name',
         'code',
+        'latitude',
+        'longitude',
         'province_id',
     ];
 
@@ -32,5 +34,10 @@ class City extends Model
     public function commercialActivities()
     {
         return $this->hasMany(CommercialActivity::class)->orderBy('company');
+    }
+
+    public function deliveringActivities()
+    {
+        return $this->belongsToMany(CommercialActivity::class, 'commercial_activity_city', 'city_id', 'commercial_activity_id');
     }
 }

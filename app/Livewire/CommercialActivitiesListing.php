@@ -44,24 +44,9 @@ class CommercialActivitiesListing extends Component
         }
 
         if ($this->selectedCity) {
-            if ($this->selectedKm){
+      
                 $objCity=City::find($this->selectedCity);
-            
-           
-                $cityIds = DB::table('cities')
-                ->select('id')
-                ->selectRaw("(6371 * acos(cos(radians(?)) * cos(radians(latitude)) * cos(radians(longitude) - radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance", [$objCity->latitude, $objCity->longitude, $objCity->latitude])
-                ->having('distance', '<=', $this->selectedKm)
-                ->pluck('id');
-
-                $query = CommercialActivity::with('city')
-                ->whereIn('city_id', $cityIds);
-              
-            } else {
-                $query->whereHas('city', function ($query) {
-                    $query->where('city_id', $this->selectedCity);
-                });
-            }
+                $this->commercialActivities = $objCity->deliveringActivities;
             
         } else if ($this->selectedProvince) {
             $query->whereHas('city', function ($query) {
@@ -70,6 +55,8 @@ class CommercialActivitiesListing extends Component
                     
                 });
             });
+            $this->commercialActivities = $query
+            ->get();
         } else if ($this->selectedRegion) {
             $query->whereHas('city', function ($query) {
                 $query->whereHas('province', function ($query) {
@@ -78,13 +65,14 @@ class CommercialActivitiesListing extends Component
                     });
                 });
             });
+            $this->commercialActivities = $query
+            ->get();
         }
 
 
 
 
-        $this->commercialActivities = $query
-            ->get();
+       
     }
 
 

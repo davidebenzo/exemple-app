@@ -1,3 +1,5 @@
+
+
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -15,9 +17,14 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if (Auth::User()->roles()->first()->title=='Admin')
+                    <x-nav-link :href="route('attivita-commerciali')" :active="request()->routeIs('attivita-commerciali')">
+                        {{ __('Attività commerciali') }}
+                    </x-nav-link>
+                    @endif
                 </div>
             </div>
-
+       
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">

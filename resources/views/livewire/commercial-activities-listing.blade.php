@@ -2,13 +2,23 @@
 <div>
     <div class="grid grid-cols-3 gap-6 p-4">
         @foreach($commercialActivities as $commercialActivity)
-        
+        @php
+        if (str_contains($commercialActivity->logo, 'http')) {
+        $urlLogo=$commercialActivity->logo;
+        } else {
+        $urlLogo=Storage::url($commercialActivity->logo);
+        }
+        @endphp
         <div class="border-2 flex rounded-md  bg-white shadow">
-            <div class=" w-[200px] flex-shrink-0 relative"><img class="md:rounded-bl-md md:rounded-tl-md w-[200px]" src="{{$commercialActivity->logo}}" title="{{$commercialActivity->company}}">
+            <div class=" w-[200px] h-[200px] flex-shrink-0 relative"   
+            style="background-image: url('{{ $urlLogo }}'); background-size: cover; background-position: center;">
+                
            
-           
-            <div class="absolute left-0 bottom-0 bg-white border-2"><x-images.category.logo :logo="$commercialActivity->category->logo" class="w-[30px] h-[30px]" /></div>
+                <div class="absolute left-0 bottom-0 bg-white border-2">
+                    <x-images.category.logo :logo="$commercialActivity->category->logo" class="w-[30px] h-[30px]" />
+                </div>
             </div>
+          
             <div class="flex-grow w-full max-h-[200px] overflow-y grid grid-rows-3 grid-cols-1">
                 <h3 class="font-bold p-2 col-span-full">{{$commercialActivity->company}}</h3>
                 <div></div>
