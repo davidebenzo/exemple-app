@@ -30,19 +30,11 @@ class DatabaseSeeder extends Seeder
         $this->call(CategorySeeder::class);
         $this->call(RolesTableSeeder::class);
         $this->call(PermissionsTableSeeder::class);
-
-
-
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'davidebenzo@gmail.com',
-            'password'=> bcrypt('12345678'),
-        ]);
-
-        $this->call(RoleUserTableSeeder::class);
+        $this->call(UserTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
-
-        CommercialActivity::factory(150)->create();
+        $this->call(RoleUserTableSeeder::class);
+        
+        CommercialActivity::factory(350)->create();
+        $this->call(CommercialActivityCityTableSeeder::class);
     }
 }

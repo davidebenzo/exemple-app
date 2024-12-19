@@ -17,14 +17,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if (Auth::User()->roles()->first()->title=='Admin')
-                    <x-nav-link :href="route('attivita-commerciali')" :active="request()->routeIs('attivita-commerciali')">
+                    @if (Auth::User()->roles()->first()->title=='User')
+                    <x-nav-link :href="route('commercial-activities.index')" :active="request()->routeIs('commercial-activities')">
                         {{ __('Attività commerciali') }}
                     </x-nav-link>
                     @endif
                 </div>
             </div>
-       
+     
+
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
                 <x-dropdown align="right" width="48">
@@ -82,8 +83,8 @@
         <!-- Responsive Settings Options -->
         <div class="pt-4 pb-1 border-t border-gray-200">
             <div class="px-4">
-                <div class="font-medium text-base text-gray-800">{{ Auth::user()->name }}</div>
-                <div class="font-medium text-sm text-gray-500">{{ Auth::user()->email }}</div>
+                <div class="font-medium text-base text-gray-800">{{ Auth::User()->name }}</div>
+                <div class="font-medium text-sm text-gray-500">{{ Auth::User()->email }}</div>
             </div>
 
             <div class="mt-3 space-y-1">

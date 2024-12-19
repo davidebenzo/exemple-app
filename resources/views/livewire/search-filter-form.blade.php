@@ -35,10 +35,7 @@
         <div>
         <input type="text" wire:model.defer="searchInput" class="m-2 p-2" placeholder="Ricerca per ragione sociale">
         </div>
-        <div  class="p-2">
-        <label for="rangeKm" class="block  text-sm text-gray-900">Distanza <b>{{$selectedKm}}</b>km</label>
-        <input id="rangeKm" type="range" wire:change="setKm($event.target.value)" min="0" max="60" value="{{$selectedKm}}" class="w-full h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer">
-        </div>
+
         <div>
             <button class="m-2 py-2 px-4 btn bg-gray-400 text-white" type="submit">FILTRA</button>
         </div>

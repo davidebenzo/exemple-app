@@ -30,7 +30,8 @@ class CommercialActivityFactory extends Factory
         
         return [
             'company'=>$this->faker->company,
-            'logo' =>"https://loremflickr.com/200/200?random={{$this->faker->numberBetween(0, 500)}}",
+            
+            'logo' =>"https://picsum.photos/" . $this->faker->numberBetween(200, 500) . "/" . $this->faker->numberBetween(200, 500),
             'address'=>$this->faker->streetAddress,
             'city_id'=>$randomNumberCity,
             'rangeKm'=>$this->faker->numberBetween(1, 30),

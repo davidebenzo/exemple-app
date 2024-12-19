@@ -8,6 +8,7 @@ use App\Models\CommercialActivity;
 use App\Models\Region;
 use App\Models\Category;
 use Illuminate\Support\Facades\Request;
+use Illuminate\Support\Str; 
 
 class CommercialActivitiesController extends Controller
 {
@@ -43,9 +44,24 @@ class CommercialActivitiesController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(CommercialActivity $commercialActivity)
+    public function show($id, $slug)
     {
-        //
+        // Recupera l'attività commerciale con l'ID specificato
+        $commercialActivity = CommercialActivity::findOrFail($id);
+    
+        // Verifica che lo slug corrisponda al nome dell'attività (ad esempio "ragione-sociale-attivita")
+        if ($slug !== Str::slug($commercialActivity->company)) {
+            // Se lo slug non corrisponde, reindirizza all'URL corretto
+          
+            return redirect()->route('commercial-activities.show', [
+                'id' => $commercialActivity->id,
+                'slug' => Str::slug($commercialActivity->company),
+            ]);
+        }
+    
+        // Restituisci la vista o il contenuto desiderato
+        $cities = $commercialActivity->deliveryCities()->paginate(10);
+        return view('commercial-activities.show', compact('commercialActivity', 'cities'));
     }
 
     /**

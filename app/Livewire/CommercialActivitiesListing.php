@@ -4,39 +4,43 @@ namespace App\Livewire;
 
 use App\Models\City;
 use App\Models\CommercialActivity;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class CommercialActivitiesListing extends Component
 {
+    use WithPagination; // Abilita l'impaginazione
 
     public $city_id;
-
-    public $commercialActivities = []; // Elenco delle attività
-    public $searchInput = '';     // Valore del filtro
-    public $selectedRegion = ''; 
-    public $selectedProvince = ''; 
-    public $selectedCity = ''; 
-    public $selectedKm=''; 
+    public $searchInput = '';
+    public $selectedRegion = '';
+    public $selectedProvince = '';
+    public $selectedCity = '';
+    public $selectedKm = '';
 
     protected $listeners = ['filterUpdated' => 'updateFilter'];
 
-    public function mount()
+    public function updating($name, $value)
     {
-        $this->commercialActivities = CommercialActivity::with('city')->get();
-      
-        
+        // Resetta l'impaginazione ogni volta che un filtro cambia
+        $this->resetPage();
     }
 
-    public function updateFilter($data){
- 
+    public function updateFilter($data)
+    {
         $this->searchInput = $data['searchInput'];
         $this->selectedRegion = $data['selectedRegion'];
         $this->selectedProvince = $data['selectedProvince'];
         $this->selectedCity = $data['selectedCity'];
         $this->selectedKm = $data['selectedKm'];
-        // Filtra direttamente con la query Eloquent
+
+        // Resetta la pagina dopo il filtro
+        $this->resetPage();
+    }
+
+    public function render()
+    {
+        // Costruisci la query principale
         $query = CommercialActivity::with('city');
 
         if ($this->searchInput) {
@@ -44,40 +48,23 @@ class CommercialActivitiesListing extends Component
         }
 
         if ($this->selectedCity) {
-      
-                $objCity=City::find($this->selectedCity);
-                $this->commercialActivities = $objCity->deliveringActivities;
-            
-        } else if ($this->selectedProvince) {
-            $query->whereHas('city', function ($query) {
-                $query->whereHas('province', function ($query) {
-                    $query->where('province_id', $this->selectedProvince);
-                    
-                });
+            $city = City::find($this->selectedCity);
+            $query = $city ? $city->deliveringActivities() : $query;
+        } elseif ($this->selectedProvince) {
+            $query->whereHas('city.province', function ($q) {
+                $q->where('province_id', $this->selectedProvince);
             });
-            $this->commercialActivities = $query
-            ->get();
-        } else if ($this->selectedRegion) {
-            $query->whereHas('city', function ($query) {
-                $query->whereHas('province', function ($query) {
-                    $query->whereHas('region', function ($query) {
-                        $query->where('region_id', $this->selectedRegion);
-                    });
-                });
+        } elseif ($this->selectedRegion) {
+            $query->whereHas('city.province.region', function ($q) {
+                $q->where('region_id', $this->selectedRegion);
             });
-            $this->commercialActivities = $query
-            ->get();
         }
 
+        // Applica impaginazione
+        $commercialActivities = $query->paginate(15); // 12 elementi per pagina
 
-
-
-       
-    }
-
-
-    public function render()
-    {
-        return view('livewire.commercial-activities-listing');
+        return view('livewire.commercial-activities-listing', [
+            'commercialActivities' => $commercialActivities,
+        ]);
     }
 }

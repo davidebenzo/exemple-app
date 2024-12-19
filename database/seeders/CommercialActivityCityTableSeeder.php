@@ -29,7 +29,6 @@ class CommercialActivityCityTableSeeder extends Seeder
             radians(?)) + sin(radians(?)) * sin(radians(latitude)))) AS distance", [$city->latitude, $city->longitude, $city->latitude])
             ->having('distance', '<=', $activity->rangeKm)
             ->pluck('id');
-
             CommercialActivity::findOrFail($activity->id)->deliveryCities()->sync($cityIds);
           
 

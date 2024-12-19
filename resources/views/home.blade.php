@@ -2,18 +2,8 @@
 <x-layouts.app>
   
 <div class="bg-gray-100 text-gray-800">
-    <!-- Navbar -->
-    <nav class="bg-white shadow-md">
-        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
-            <a href="#" class="text-xl font-bold text-blue-500">MyWebsite</a>
-            <ul class="flex space-x-4">
-                <li><a href="#" class="text-gray-600 hover:text-blue-500">Home</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-blue-500">About</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-blue-500">Services</a></li>
-                <li><a href="#" class="text-gray-600 hover:text-blue-500">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
+    @include('layouts.menu')
+
 
     <!-- Hero Section -->
     <header class="bg-blue-500 text-white bg bg-hero">

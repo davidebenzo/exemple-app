@@ -14,7 +14,6 @@
     <meta property="og:image" content="{{ __('meta-tags.image') }}">
     @livewireStyles
 
-
     @section('title')
         <title>{{ config('app.name') }}</title>
     @show
@@ -30,6 +29,7 @@
 <body class="relative antialiased">
 
     <div class="md:w-[1366px] m-auto">
+
         {{ $slot }}
     </div>
     @livewireScripts
