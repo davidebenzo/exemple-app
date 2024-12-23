@@ -19,6 +19,11 @@ class CommercialActivity extends Model
         'address',
         'city_id',
         'category_id',
+        'description',
+        'phone',
+        'email',
+        'latitude',
+        'longitude',
         'rangeKm',
         'user_id'
     ];

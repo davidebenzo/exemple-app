@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateCommercialActivitiesRequest;
 use App\Models\CommercialActivity;
 use App\Models\Region;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
 use Illuminate\Support\Str; 
 
@@ -19,8 +20,20 @@ class CommercialActivitiesController extends Controller
 
     public function index()
     {
-        $activities = CommercialActivity::where('user_id', auth()->id())->get();
-        return view('commercial-activities.index', compact('activities'));
+        $addresses = DB::table('commercial_activities')
+        ->join('cities', 'commercial_activities.city_id', '=', 'cities.id')
+        ->where('commercial_activities.user_id', auth()->id())
+        ->select('cities.name as name', 'commercial_activities.latitude as lat', 'commercial_activities.longitude as lng')
+        ->get()
+        ->toArray();
+
+        return view('commercial-activities.index', [
+            'activities' =>  DB::table('commercial_activities')
+            ->join('cities', 'commercial_activities.city_id', '=', 'cities.id')
+            ->where('commercial_activities.user_id', auth()->id())
+            ->select('commercial_activities.*', 'cities.name as city_name')->paginate(15),
+            'addresses'=>$addresses
+        ]);
     }
 
     /**

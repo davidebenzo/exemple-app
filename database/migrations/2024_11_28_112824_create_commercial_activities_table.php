@@ -15,12 +15,18 @@ return new class extends Migration
             $table->bigIncrements('id');
             $table->string('company');
             $table->string('logo');
+            $table->text('description');
             $table->string('address');
+            $table->string('phone');
+            $table->string('email');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->smallInteger('rangeKm');
             $table->foreignId('city_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->timestamps();
+
         });
     }
 

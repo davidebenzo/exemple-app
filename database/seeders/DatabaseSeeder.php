@@ -33,8 +33,7 @@ class DatabaseSeeder extends Seeder
         $this->call(UserTableSeeder::class);
         $this->call(PermissionRoleTableSeeder::class);
         $this->call(RoleUserTableSeeder::class);
-        
-        CommercialActivity::factory(350)->create();
+        $this->call(CommercialActivityTableSeeder::class); 
         $this->call(CommercialActivityCityTableSeeder::class);
     }
 }

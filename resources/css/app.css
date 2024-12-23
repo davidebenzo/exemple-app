@@ -8,4 +8,45 @@
         @apply bg-cover bg-center ;
         background-image: url('/public/img/bg-hero.webp');
     }
+
+
+    .tablet-frame {
+        position: relative;
+        width: 600px; /* Regola in base all'immagine del tablet */
+        height: 400px; /* Regola in base all'immagine del tablet */
+       @apply m-auto lg:m-0;
+    }
+    
+    .tablet-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Evita interazioni con l'overlay */
+        z-index: 2;
+    }
+    
+    .map-frame {
+        position: absolute;
+        top: 10%; /* Regola in base all'immagine del tablet */
+        left: 7%; /* Regola in base all'immagine del tablet */
+        width: 86%; /* Regola in base all'immagine del tablet */
+        height: 80%; /* Regola in base all'immagine del tablet */
+        border-radius: 12px; /* Opzionale: aggiunge angoli arrotondati */
+        z-index: 9;
+        overflow: hidden;
+    }
+
+    .tablet-header {
+        position: absolute;
+        z-index: 3; /* Sopra la mappa e l'immagine */
+        border-radius: 0 0 0 10px; /* Angoli arrotondati opzionali */
+        left: 42px;
+    bottom: 40px;
+    z-index: 99;
+        font-size: 16px; /* Regola dimensione del testo */
+        background-color: rgba(0, 123, 255, 0.9); /* Colore blu semitrasparente */
+    }
+    
 }

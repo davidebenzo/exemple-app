@@ -61,7 +61,7 @@ class CommercialActivitiesListing extends Component
         }
 
         // Applica impaginazione
-        $commercialActivities = $query->paginate(15); // 12 elementi per pagina
+        $commercialActivities = $query->paginate(15); // 15 elementi per pagina
 
         return view('livewire.commercial-activities-listing', [
             'commercialActivities' => $commercialActivities,
