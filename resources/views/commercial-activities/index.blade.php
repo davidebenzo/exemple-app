@@ -4,7 +4,7 @@
             Elenco delle tue attività
         </h2>
     </x-slot>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB9G5vgpXsEvQE6hJvOVu3oiX8MWawW3f8"></script>
+   
     <script>
         function initMap() {
             const map = new google.maps.Map(document.getElementById('map'), {

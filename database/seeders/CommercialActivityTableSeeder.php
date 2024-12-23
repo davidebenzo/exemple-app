@@ -93,7 +93,7 @@ class CommercialActivityTableSeeder extends Seeder
 
 
 function getCoordinates($address) {
-    $apiKey = env('GOOGLE_MAPS_API_KEY', 'AIzaSyB9G5vgpXsEvQE6hJvOVu3oiX8MWawW3f8');
+    $apiKey = env('GOOGLE_MAPS_API_KEY');
     $address = urlencode($address);
     $url = "https://maps.googleapis.com/maps/api/geocode/json?address={$address}&key={$apiKey}";
 
