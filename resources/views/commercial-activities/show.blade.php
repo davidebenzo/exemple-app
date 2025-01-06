@@ -54,37 +54,19 @@
                 </div>
 
                 <div class="mt-4">
-                    <table class="w-full border-collapse border border-gray-300 shadow-lg rounded-lg">
-                        <thead>
-                            <tr class="">
-                                <th class="p-2 text-left">Regione</th>
-                                <th class="p-2 text-left">Provincia</th>
-                                <th class="p-2 text-left">Citta</th>
-                            </tr>
-                            <tr>
-                                <th class="p-1 border border-gray-300" colspan="3"><input class="w-full p-1 border border-gray-300" type="text" placeholder="Cerca il tuo Paese "></th>
-                            </tr>
-                        </thead>
-                        <tbody>
-
-                            @foreach ($cities as $city)
-                            <tr class="odd:bg-gray-100 even:bg-gray-50 hover:bg-blue-100 transition">
-                                <td class="p-1 border-b border-gray-300">{{ $city->province->region->name }}</td>
-                                <td class="p-1 border-b border-gray-300">{{ $city->province->name }}</td>
-                                <td class="p-1 border-b border-gray-300">{{ $city->name }}</td>
-                            </tr>
-                            @endforeach
-
-                        </tbody>
-                    </table>
-                    {{-- Paginazione --}}
-                    {{ $cities->links() }}
+                <livewire:commercial-activities-delivery :commercial-activity-id="$commercialActivity->id" />
 
                 </div>
             </div>
-        </div>
-    </div>
+            <div class="w-full">
+                <livewire:commercial-activity-comments :commercial-activity-id="$commercialActivity->id" />
 
+                </div>
+        </div>
+       
+
+    </div>
+   
 
 
 

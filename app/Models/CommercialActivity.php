@@ -56,4 +56,9 @@ class CommercialActivity extends Model
     {
         return $this->belongsToMany(City::class, 'commercial_activity_city', 'commercial_activity_id', 'city_id');
     }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
 }

@@ -58,4 +58,9 @@ class User extends Authenticatable
         return $this->hasMany(CommercialActivity::class)->orderBy('company');
     }
 
+    public function reactions()
+    {
+        return $this->hasMany(ReactionComment::class);
+    }
+
 }
